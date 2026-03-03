@@ -36,6 +36,8 @@ diamond_clean %>%
 
 ### Scatterplots
 
+##### Base
+
 ```{r}
 ggplot(diamond_clean, aes(x = carat, y = price)) +
   geom_point(alpha = 0.5) +
@@ -45,3 +47,40 @@ ggplot(diamond_clean, aes(x = carat, y = price)) +
 The relationship between diamond weight (carat) and price is definitely positive, but it doesn't look linear.
 
 ^[Problem 2 Complete]
+
+##### Color
+
+```{r}
+ggplot(diamond_clean, aes(x = carat, y = price, color = color)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm")
+```
+
+All three color groups show a positive relationship between weight and price. The best color (D) has the steepest increase in price, and the worst color (j) has the shallowest price increase.
+
+^[Problem 3 Complete]
+
+##### Clarity
+
+```{r}
+ggplot(diamond_clean, aes(x = carat, y = price, color = color)) +
+  geom_point(aes(shape = clarity), alpha = 0.5) +
+  geom_smooth(aes(linetype = clarity), method = "lm")
+```
+
+The incorporation of diamond clarity provides a lot more information in the plot. In my opinion, there's so much going on that the plot becomes difficult to read. There are so many lines that it's a little overwhelming.
+
+^[Problem 4 Complete]
+
+##### Color and Clarity
+
+```{r}
+ggplot(diamond_clean, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  facet_grid(color ~ clarity)
+```
+
+It's much easier to read the plots with the groups separated. The color-clarity combination with the steepest relationship is D(best) and IF(best).
+
+^[Problem 5 Complete]
