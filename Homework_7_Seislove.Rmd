@@ -1,0 +1,21 @@
+---
+title: "Homework 7"
+author: "T.J. Seislove"
+date: "3/3/2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+library(knitr)
+```
+
+# Diamond Prices
+
+```{r}
+data(diamonds)
+```
+
