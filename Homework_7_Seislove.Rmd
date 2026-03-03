@@ -2,11 +2,13 @@
 title: "Homework 7"
 author: "T.J. Seislove"
 date: "3/3/2026"
-output: html_document
+output:
+  html_document:
+      code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 library(tidyverse)
 library(janitor)
@@ -19,3 +21,27 @@ library(knitr)
 data(diamonds)
 ```
 
+### Filtering Data
+
+```{r}
+diamond_clean <- diamonds %>% 
+  filter(color %in% c('D', 'G', 'J') & clarity %in% c('I1', 'VS1', 'IF'))
+
+diamond_clean %>% 
+  count(color, clarity) %>% 
+  kable()
+```
+
+^[Problem 1 Complete]
+
+### Scatterplots
+
+```{r}
+ggplot(diamond_clean, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm")
+```
+
+The relationship between diamond weight (carat) and price is definitely positive, but it doesn't look linear.
+
+^[Problem 2 Complete]
