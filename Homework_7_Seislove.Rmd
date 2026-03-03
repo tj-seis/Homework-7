@@ -84,3 +84,20 @@ ggplot(diamond_clean, aes(x = carat, y = price)) +
 It's much easier to read the plots with the groups separated. The color-clarity combination with the steepest relationship is D(best) and IF(best).
 
 ^[Problem 5 Complete]
+
+### Numeric Approach
+
+```{r}
+# ppc = Price Per Carat
+diamond_clean <- diamond_clean %>% mutate(ppc = price / carat)
+
+diamond_clean %>% 
+  group_by(color, clarity) %>% 
+  summarize(avg_ppc = mean(ppc)) %>%
+  arrange(desc(avg_ppc)) %>% 
+  kable()
+```
+
+The table generally matches the plots well. The combinations with steeper slopes in the plots have higher average price per carat in the table.
+
+^[Problem 6 Complete]

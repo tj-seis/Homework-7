@@ -558,6 +558,73 @@ diamond_clean %&gt;%
 <p><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 </div>
 </div>
+<div id="numeric-approach" class="section level3">
+<h3>Numeric Approach</h3>
+<pre class="r"><code># ppc = Price Per Carat
+diamond_clean &lt;- diamond_clean %&gt;% mutate(ppc = price / carat)
+
+diamond_clean %&gt;% 
+  group_by(color, clarity) %&gt;% 
+  summarize(avg_ppc = mean(ppc)) %&gt;%
+  arrange(desc(avg_ppc)) %&gt;% 
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">color</th>
+<th align="left">clarity</th>
+<th align="right">avg_ppc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">D</td>
+<td align="left">IF</td>
+<td align="right">9937.419</td>
+</tr>
+<tr class="even">
+<td align="left">G</td>
+<td align="left">VS1</td>
+<td align="right">4420.881</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="left">VS1</td>
+<td align="right">4204.891</td>
+</tr>
+<tr class="even">
+<td align="left">G</td>
+<td align="left">IF</td>
+<td align="right">4007.010</td>
+</tr>
+<tr class="odd">
+<td align="left">J</td>
+<td align="left">VS1</td>
+<td align="right">3750.351</td>
+</tr>
+<tr class="even">
+<td align="left">J</td>
+<td align="left">IF</td>
+<td align="right">3220.227</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="left">I1</td>
+<td align="right">3064.485</td>
+</tr>
+<tr class="even">
+<td align="left">J</td>
+<td align="left">I1</td>
+<td align="right">2710.080</td>
+</tr>
+<tr class="odd">
+<td align="left">G</td>
+<td align="left">I1</td>
+<td align="right">2617.478</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
